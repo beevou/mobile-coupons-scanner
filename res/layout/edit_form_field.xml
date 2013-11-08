@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/androidform_13" >
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:layout_marginTop="2dip"
+    			android:layout_marginBottom="2dip"  >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical" >
+                    
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         >
+                         
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             >
+                            
+                            <TextView 
+                             android:id="@+id/editLabel"
+                             android:layout_width="50dip"
+                             android:layout_height="match_parent"
+                             android:layout_weight="2"
+                             android:background="@drawable/edit_left_round_corner"
+                             android:paddingLeft="5dip"
+                             android:paddingTop="2dip"
+                             android:paddingRight="2dip"
+                             android:paddingBottom="2dip"
+                             android:text=""
+                             android:textColor="#256e7d"
+                             android:ellipsize="end"
+                             android:maxLines="2"
+                             
+                                />
+                           <LinearLayout
+                        android:id="@+id/controlLayout"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                         >     
+                            
+                            <EditText
+                            android:id="@+id/editBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="45dip"
+                            android:layout_weight="8"
+                            android:padding="2dip"
+                            android:layout_alignParentLeft="true"
+                            android:background="@drawable/edit_right_round_corner"
+                            android:ems="10"
+                             />
+                            
+                            <ImageButton 
+                             android:id="@+id/searchButton"
+                            android:layout_width="45dip"
+                            android:layout_height="45dip"
+                            android:layout_weight="2"
+                            android:background="@drawable/corporate_edit_search_button"
+                            
+                            android:layout_gravity="right|center"
+                            android:visibility="gone"
+                            
+                                
+                                
+                            />
+                            
+                       </LinearLayout>   
+                            
+                        </LinearLayout>
+
+                        
+
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/androidform_15" >
+
+            </RelativeLayout>
+
+</LinearLayout>

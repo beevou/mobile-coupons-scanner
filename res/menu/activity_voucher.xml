@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/voucher_info"
+        android:title="@string/voucher_info"
+        android:icon="@drawable/corporate_menu_info_75"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/voucher_lock"
+        android:title="@string/voucher_lock"
+        android:icon="@drawable/corporate_menu_lock_75"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/voucher_transfer"
+        android:title="@string/voucher_transfer"
+        android:orderInCategory="100"
+        android:icon="@drawable/corporate_menu_transfer_75"
+        android:showAsAction="never" />
+    <item android:id="@+id/voucher_delete"
+        android:title="@string/voucher_delete"
+        android:orderInCategory="100"
+        android:icon="@drawable/corporate_menu_delete_75"
+        android:showAsAction="never" />
+    <item android:id="@+id/code128"
+        android:title="Bar code"
+        android:orderInCategory="100"
+        android:icon="@drawable/corporate_menu_bar_75"
+        android:showAsAction="never" />
+    <item android:id="@+id/codeQR"
+        android:title="QR code"
+        android:orderInCategory="100"
+        android:icon="@drawable/corporate_menu_qr_75"
+        android:showAsAction="never" />
+    
+</menu>

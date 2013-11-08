@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  
+  <item>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+<solid android:color="#FFFFFF"/>
+    <stroke android:width="3dp" android:color="#999999"
+       android:dashWidth="10px"
+       android:dashGap="10px"/>
+    <corners android:radius="20dp" />
+    <padding android:left="5dp" android:top="5dp"
+        android:right="5dp" android:bottom="0dp" />
+    
+   </shape>
+  </item>
+  <item><bitmap android:src="@drawable/scicsors_big_bottom" android:gravity="bottom|right" /></item>
+
+ </layer-list>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notification_list_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/voucher_list_item_degraded"
+    android:orientation="horizontal" >
+    
+     <LinearLayout
+           android:id="@+id/mainLayout"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content" 
+           android:orientation="vertical" 
+           android:padding="3dp"
+           >  
+           <TextView
+               android:id="@+id/notificationText"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:text=""
+               android:layout_marginLeft="2dip"
+               android:textStyle="italic"
+               android:layout_weight="1"
+               android:textColor="#000000"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+           <TextView
+                   android:id="@+id/daysAgo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical"
+                   android:layout_margin="3dp"
+                   android:layout_weight="5"
+                   android:background="@drawable/days_left_green"
+                   android:maxLines="3"
+                   android:padding="3dp"
+                   android:text="@string/xx_days_left"
+                   android:textColor="#FFFFFF"
+                   android:textSize="12sp"
+                   android:textStyle="italic" />
+           <LinearLayout
+               android:id="@+id/buttonsLayout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="1" >
+
+               <Button
+                   android:id="@+id/rejectButton"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:background="@drawable/red_button"
+                   android:text="@string/reject"/>
+
+               <Button
+                   android:id="@+id/acceptButton"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:background="@drawable/blue_button"
+                   android:text="@string/accept"
+                    />
+               
+               </LinearLayout>
+
+       </LinearLayout>
+       
+
+</RelativeLayout>

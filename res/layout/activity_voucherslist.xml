@@ -1,0 +1,67 @@
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <LinearLayout android:id="@+id/top_menu"
+        android:layout_width="fill_parent" 
+        android:layout_height="50dp"        
+        android:layout_alignParentTop="true"
+        android:background="@drawable/corporate_degraded">
+                <ImageButton
+            android:id="@+id/info"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:layout_gravity="center_vertical"
+    		android:onClick="back"
+            android:background="@drawable/corporate_toolbar_back_button"
+            />
+        
+        <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="2dip"
+        android:paddingLeft="5dp"
+        android:text="@string/my_vouchers"
+        android:textColor="#ffffff" />
+        <ImageButton
+            android:id="@+id/sort"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:layout_gravity="center_vertical"
+    		android:onClick="showOrderByButtonClick"
+            android:background="@drawable/corporate_toolbar_sort_button"
+            />
+        <ImageButton
+            android:id="@+id/search"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:onClick="showSearchButtonClick"
+    		android:layout_gravity="center_vertical"
+            android:background="@drawable/corporate_toolbar_find_button" />
+
+    </LinearLayout>
+    
+   
+<LinearLayout android:id="@+id/mainLayout"
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent"        
+        android:layout_below="@id/top_menu"
+        android:orientation="vertical" 
+        >    
+
+<ListView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/list" 
+        android:layout_below="@id/top_menu"
+    android:background="#FFFFFF"
+    android:divider="#CCCCCC"
+    android:cacheColorHint="#FFFFFF">
+ 
+</ListView>
+</LinearLayout>
+
+</RelativeLayout>

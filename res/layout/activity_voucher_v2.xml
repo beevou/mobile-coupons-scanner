@@ -1,0 +1,314 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@drawable/corporate_degraded" >
+    
+    
+    <LinearLayout
+        android:id="@+id/bottom_menu"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:orientation="vertical"
+        >
+        
+    <LinearLayout 
+        android:layout_width="fill_parent" 
+        android:layout_height="50dp"         
+        android:layout_alignParentTop="true"
+        android:background="@drawable/corporate_degraded">
+        <ImageButton
+            android:id="@+id/info"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:layout_gravity="center_vertical"
+    		android:onClick="back"
+            android:background="@drawable/corporate_toolbar_back_button"
+            />
+        <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="2dip"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingLeft="5dp"
+        android:text="@string/my_vouchers"
+        android:textColor="#ffffff" />
+        <ImageButton
+            android:id="@+id/info"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:layout_gravity="center_vertical"
+    		android:onClick="infoClick"
+            android:background="@drawable/corporate_toolbar_info_button"
+            />
+        <ImageButton
+            android:id="@+id/menu"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:layout_gravity="center_vertical"
+    		android:onClick="menuClick"
+            android:background="@drawable/corporate_toolbar_menu_button"
+            />
+        
+     </LinearLayout>   
+    
+    <LinearLayout 
+        android:id="@+id/subMenu"
+        android:layout_width="fill_parent" 
+        android:layout_height="50dp"         
+        android:layout_alignParentTop="true"
+        android:background="#999999"
+        android:visibility="gone"
+        >        
+
+        <ImageButton
+            android:id="@+id/lock"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:onClick="lockClick"
+    		android:layout_gravity="center_vertical"
+            android:background="@drawable/corporate_toolbar_lock_button" />
+        <ImageButton
+            android:id="@+id/transfer"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:layout_gravity="center_vertical"
+    		android:onClick="transferClick"
+            android:background="@drawable/corporate_toolbar_transfer_button"
+            />
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:onClick="deleteClick"
+    		android:layout_gravity="center_vertical"
+            android:background="@drawable/corporate_toolbar_delete_button" />
+        <ImageButton
+            android:id="@+id/codeBar"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:onClick="barClick"
+    		android:layout_gravity="center_vertical"
+            android:background="@drawable/corporate_menu_bar_75" />
+        
+        <ImageButton
+            android:id="@+id/codeQR"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:onClick="qrClick"
+    		android:layout_gravity="center_vertical"
+            android:background="@drawable/corporate_menu_qr_75" />
+
+
+    </LinearLayout>
+    
+    </LinearLayout> 
+        
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#999999"
+        android:padding="0dp" 
+        android:layout_below="@id/bottom_menu">
+    
+    <LinearLayout android:id="@+id/voucherTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:padding="0dp" >
+        
+        
+        <LinearLayout
+           android:id="@+id/mainLayout"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content" 
+           android:padding="3dp"
+           >
+
+           <ImageView
+               android:id="@+id/imageView1"
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:layout_margin="3dp"
+               android:src="@drawable/noimagevoucher"
+               android:padding="3dp"
+               android:background="#FFFFFF" />
+           
+       <LinearLayout
+     android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+       android:orientation="vertical" 
+       android:layout_weight="9">
+
+           <TextView
+               android:id="@+id/title"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/title"
+               android:layout_marginLeft="2dip"
+               android:ellipsize="end"
+               android:textStyle="bold"
+               android:maxLines="1"
+               android:layout_weight="1"
+              android:textColor="#000000"
+               android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TextView
+               android:id="@+id/description"
+               android:layout_height="wrap_content"
+               android:text="@string/description"
+               android:layout_width="fill_parent"
+    			android:textColor="#999999"
+    			android:textSize="12sp"
+    			android:ellipsize="end"
+    			android:maxLines="3"
+    			android:typeface="sans"
+    			android:layout_weight="7"
+                />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="1" >
+               <LinearLayout
+     android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+       android:orientation="vertical" 
+       android:layout_weight="5">
+               
+               
+               <TextView
+                   android:id="@+id/cumulativeStatus"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical"
+                   android:layout_margin="3dp"
+                   android:layout_weight="5"
+                   android:background="@drawable/days_left_green"
+                   android:maxLines="3"
+                   android:padding="3dp"
+                   android:text="@string/xx_of_yy_uses_left"
+                   android:textColor="#FFFFFF"
+                   android:textSize="12sp"
+                   android:textStyle="italic" />
+
+               <TextView
+                   android:id="@+id/daysLeft"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical"
+                   android:layout_margin="3dp"
+                   android:layout_weight="5"
+                   android:background="@drawable/days_left_green"
+                   android:maxLines="3"
+                   android:padding="3dp"
+                   android:text="@string/xx_days_left"
+                   android:textColor="#FFFFFF"
+                   android:textSize="12sp"
+                   android:textStyle="italic" />
+               </LinearLayout>
+
+               <TextView
+                   android:id="@+id/value"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentEnd="true"
+                   android:layout_weight="5"
+                   android:gravity="right"
+                   android:maxLines="1"
+                   android:text="$10"
+                   android:textColor="#256E7D"
+                   android:textSize="35sp"
+                   android:textStyle="bold" />
+
+           </LinearLayout>
+
+       </LinearLayout>
+   </LinearLayout>
+   
+       <TextView
+       android:id="@+id/statusText"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:ellipsize="end"
+       android:gravity="center|center_vertical"
+       android:maxLines="1"
+       android:text=""
+       android:textColor="#D14130"
+       android:textSize="40dip"
+       android:textStyle="bold" />
+        
+        
+    </LinearLayout>   
+    
+    <ScrollView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        
+
+        
+        <LinearLayout
+            android:id="@+id/voucherLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_voucher"
+            android:gravity="center_vertical|center"
+            android:layout_margin="5dip"
+            android:orientation="vertical"
+            android:padding="0dip" >
+
+            <ImageView
+                android:id="@+id/qrImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/qr"
+                android:onClick="clickQR"/>
+
+
+            <ImageView
+                android:id="@+id/voucherImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/noimagevoucher"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_margin="5dp"/>
+            
+            <LinearLayout
+            android:id="@+id/detailsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:background="@drawable/shape_voucher"
+            android:padding="5dp"
+            android:layout_margin="5dip" >
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/conditionsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:background="@drawable/shape_voucher"
+            android:padding="5dp"
+            android:layout_margin="5dip" >
+
+        </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+ 
+
+
+    </LinearLayout>
+    
+
+</RelativeLayout >

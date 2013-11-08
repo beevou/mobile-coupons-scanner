@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.beevou.android.scanner"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- GCM messages. -->
+    <permission
+        android:name="com.beevou.android.scanner.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.beevou.android.scanner.permission.C2D_MESSAGE" />
+
+    <!-- App receives GCM messages. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <!-- GCM connects to Google Services. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="14" />
+
+    <application
+        android:name="com.beevou.android.scanner.Beevou_Scanner"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        
+        
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.beevou.android.scanner" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.beevou.android.scanner.GCMIntentService" />
+        <service
+            android:name="com.beevou.android.scanner.authenticator.AuthenticationService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <activity
+            android:name="com.beevou.android.scanner.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.dm.zbar.android.scanner.ZBarScannerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.beevou.android.scanner.Login"
+            android:label="@string/title_activity_login" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dm.zbar.android.examples.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.Register"
+            android:label="@string/title_activity_register" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dm.zbar.android.examples.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.Dashboard"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dm.zbar.android.examples.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.scan.ScanActivity"
+            android:label="@string/title_activity_scan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dm.zbar.android.examples.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.scan.Discount"
+            android:label="@string/title_activity_discount" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dm.zbar.android.examples.scan.ScanActivity" />
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.scan.IdentityAlert"
+            android:label="@string/title_activity_identity_alert" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dm.zbar.android.examples.scan.ScanActivity" />
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.scan.PinInterface"
+            android:label="@string/title_activity_pin_interface" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dm.zbar.android.examples.scan.ScanActivity" />
+        </activity>
+
+
+
+        <activity
+            android:name="com.beevou.android.scanner.authentication.AuthenticatorActivity"
+            android:excludeFromRecents="true"
+            android:label="login"
+            android:theme="@android:style/Theme.Dialog" >
+
+            <!--
+                No intent-filter here! This activity is only ever launched by
+                someone who explicitly knows the class name
+            -->
+        </activity>
+
+
+        <activity
+            android:name="com.beevou.android.scanner.scan.scanedVouchersList"
+            android:label="@string/title_activity_launched_voucher" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.beevou.android.Dashboard" />
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.scan.ScannedVoucher"
+            android:label="@string/title_activity_launched_voucher" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.beevou.android.scan.scanedVouchersList" />
+        </activity>
+        <activity
+            android:name="com.google.zxing.client.android.CaptureActivity"
+            android:label="Capture Beevou code"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.beevou.android.Dashboard" />
+        </activity>
+
+        <activity 
+            android:name="com.beevou.android.scanner.my_account.UserBasicData"
+            android:label="@string/title_activity_user_basic_data" >
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.my_account.UserPublicData"
+            android:label="@string/title_activity_user_public_data" >
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.my_account.UserSecurityData"
+            android:label="@string/title_activity_user_security_data" >
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.my_account.UserProfileData"
+            android:label="@string/title_activity_user_profile_data" >
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.my_account.UserMyAccount"
+            android:label="@string/title_activity_user_my_account" >
+        </activity>
+
+        <activity
+            android:name="com.beevou.android.scanner.notifications.BeevouNotifications"
+            android:label="@string/title_activity_beevou_notifications" >
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.settings.Settings"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name="com.google.zxing.client.android.ManualCode"
+            android:label="@string/title_activity_manual_code" >
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.scan.ScanCamera"
+            android:label="@string/title_activity_scan_camera" >
+        </activity>
+        <activity
+            android:name="com.beevou.android.scanner.scan.LoyaltyScan"
+            android:label="@string/title_activity_loyalty_scan" >
+        </activity>
+
+    </application>
+
+</manifest>

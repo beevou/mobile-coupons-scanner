@@ -1,0 +1,314 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings"
+    android:background="#FFFFFF" >
+
+        <LinearLayout android:id="@+id/top_menu"
+        android:layout_width="fill_parent" 
+        android:layout_height="50dp"        
+        android:layout_alignParentTop="true"
+        android:background="@drawable/corporate_degraded">
+        
+                   <ImageButton
+            android:id="@+id/back"
+            android:layout_width="50dip"
+    		android:layout_height="50dip" 
+    		android:layout_gravity="center_vertical"
+    		android:onClick="back"
+            android:background="@drawable/corporate_toolbar_back_button"
+            /> 
+        
+        <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="2dip"
+        android:paddingLeft="5dp"
+        android:text="@string/settings"
+        android:textColor="#FFFFFF" />
+        
+    </LinearLayout>
+
+<ScrollView 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/top_menu" >   
+    
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip" >
+        
+    
+        
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dip"
+        android:paddingBottom="5dip" >
+        
+            <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/beevou_account"
+             android:typeface="monospace"
+             android:paddingLeft="5dip"
+             android:textColor="#000000"
+            
+                />
+             <LinearLayout
+        		android:layout_width="match_parent"
+        		android:layout_height="1dip"
+        		android:background="#000000"/>   
+        		
+        <LinearLayout
+            android:id="@+id/myaccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corporate_layout_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="10dip"
+            android:onClick="myAccountClick" >
+        
+            <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/user"
+             android:typeface="monospace"
+             android:paddingTop="5dip"
+        	 android:paddingBottom="5dip"
+            
+            
+                />
+            
+            <TextView
+                android:id="@+id/userName"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text=""
+             android:textColor="#999999"
+             android:paddingTop="5dip"
+        	 android:paddingBottom="5dip"
+            
+                />
+            
+            <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/log_out"
+             android:typeface="monospace"
+             android:textColor="#000000"
+             android:background="@drawable/grey_button"
+             android:minWidth="150dip"
+             android:layout_gravity="right"
+             android:onClick="exitClick"
+             android:paddingTop="5dip"
+        	 android:paddingBottom="5dip"
+             />
+            
+            <LinearLayout
+        		android:layout_width="match_parent"
+        		android:layout_height="1dip"
+        		android:background="#CCCCCC"
+        		android:layout_marginTop="10dip"
+        		/>
+            </LinearLayout>
+       <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/corporate_layout_button" >
+        
+            <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/security_configuration"
+             android:typeface="monospace"
+             android:paddingTop="5dip"
+        	 android:paddingBottom="5dip"
+            
+                />
+
+            <CheckBox
+                android:id="@+id/automaticLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/automatic_login"
+                android:textColor="#000000"
+                android:onClick="automaticLoginClick" />
+           
+            <LinearLayout
+        		android:layout_width="match_parent"
+        		android:layout_height="1dip"
+        		android:background="#CCCCCC"
+        		android:layout_marginTop="10dip"/>
+       </LinearLayout>  
+             
+       <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/corporate_layout_button" >
+        
+            <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/this_month_issue_credits"
+             android:typeface="monospace"
+             android:paddingTop="5dip"
+        	 android:paddingBottom="5dip"
+            
+                />
+            
+            <TextView
+                android:id="@+id/credits"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text=""
+             android:paddingTop="5dip"
+        	 android:paddingBottom="5dip"
+        	 android:textColor="#999999"
+            
+                />
+            <LinearLayout
+        		android:layout_width="match_parent"
+        		android:layout_height="1dip"
+        		android:background="#CCCCCC"/>
+       </LinearLayout>     
+            
+       
+       
+       <LinearLayout
+        android:id="@+id/unlink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/corporate_layout_button"
+        android:onClick="unlinkClick" >
+        
+             
+            <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/unlink_device"
+             android:typeface="monospace"
+             android:textColor="#000000"
+             android:background="@drawable/grey_button"
+             android:minWidth="150dip"
+             android:layout_gravity="right"
+             android:visibility="invisible"
+             />
+            
+            
+        </LinearLayout>
+        
+ </LinearLayout>
+      
+        
+
+        
+
+        
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+            <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/about"
+             android:typeface="monospace"
+             android:paddingLeft="5dip"
+             android:textColor="#000000"
+            
+                />
+             <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#000000"
+        />   
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/corporate_layout_button" >
+        
+            <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/app_version"
+             android:typeface="monospace"
+             android:paddingTop="5dip"
+        	 android:paddingBottom="5dip"
+            
+                />
+            
+            <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="0.9"
+             android:textColor="#999999"
+             android:paddingTop="5dip"
+        	 android:paddingBottom="5dip"
+            
+                />
+            <LinearLayout
+        		android:layout_width="match_parent"
+        		android:layout_height="1dip"
+        		android:background="#CCCCCC"
+        		
+        		/>
+            </LinearLayout>
+             
+    
+            
+       
+       
+
+            
+        </LinearLayout>
+            
+            
+
+       </LinearLayout>        
+        
+        
+        
+        
+        
+
+     
+    </ScrollView>
+    
+
+</RelativeLayout>

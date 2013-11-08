@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+            <LinearLayout
+                android:id="@+id/notificationsLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/androidmainmenunotifications_02" />
+                
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                    android:id="@+id/imageView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/androidmainmenunotifications_03" />
+
+                    <TextView
+                        android:id="@+id/notificationsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignRight="@+id/imageView15"
+                        android:layout_marginTop="10dip"
+                        android:background="@color/transparent"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:maxWidth="75dip"
+                        android:text="@string/you_have_xxx_unreaded_notifications"
+                    	android:textColor="#FF0000"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/androidmainmenunotifications_04" />
+                    
+                </LinearLayout>
+</LinearLayout>
