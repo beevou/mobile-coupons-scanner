@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +66,6 @@ OnTaskCompleteListener {
 	private int totalPages = 0;
 	private int totalItems = 0;
 	private int lastPage = 0;
-	//private Button btnLoadMore;
     private LinearLayout loadMoreLayout;
     private LinearLayout mainLayout;
     private TextView noVouchersFound;
@@ -74,7 +73,7 @@ OnTaskCompleteListener {
     private Integer lastClicked;
     private AsyncTaskManager mAsyncTaskManager;
     private Task mTask;
-   // private int oldOrientation;
+
     
     
 	public static long daysBetween(Calendar startDate, Calendar endDate) {  
@@ -156,7 +155,7 @@ OnTaskCompleteListener {
 
 		public GetNotifications(Resources resources) {
 			super(resources);
-			// TODO Auto-generated constructor stub
+		
 		}
         
         @Override
@@ -166,7 +165,7 @@ OnTaskCompleteListener {
     	    	if (lastPage == 1)
     	    		notificationslist.clear();
     	   
-    	    	json = UserFunctions.getInstance().getUserNotifications(orderBy, searchType,lastPage);
+    	    	json = BeevouFunctions.getInstance().getUserNotifications(orderBy, searchType,lastPage);
     		} catch (Exception e) {
             	Log.e("background Error","getUserNotifications");
             	
@@ -215,7 +214,7 @@ OnTaskCompleteListener {
 
 	@Override
 	public void onTaskComplete(Task task) {
-		// TODO Auto-generated method stub
+	
 		if (!task.isCancelled()) {
             JSONObject json = ((GetNotifications) mTask).getResult();
             processResult(json);
@@ -349,7 +348,7 @@ OnTaskCompleteListener {
 					}
 				notificationslist.add(map);
 
-				}//for
+				}
 			}
 			}
 		} catch (JSONException e) {

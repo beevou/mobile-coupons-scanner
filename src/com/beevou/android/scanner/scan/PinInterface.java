@@ -1,6 +1,6 @@
 package com.beevou.android.scanner.scan;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +42,6 @@ public class PinInterface extends Activity {
 	private String idVoucher;
 	private LinearLayout mainLayout;
 	private EditText editPin;
-	//private ImageView pinImage;
 	private TextView  pinCodeMessage;
 	private Button t3;
 	private LinearLayout LY2;
@@ -50,7 +49,7 @@ public class PinInterface extends Activity {
 	private Context mcontext = this;
 	
 	
-	UserFunctions userFunctions;
+	BeevouFunctions userFunctions;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +68,7 @@ public class PinInterface extends Activity {
 			description = b.getString("description");
 			holder = b.getString("holder");
 			pin = b.getString("pin");
-			//attempts = b.getInt("attempts");
+
         
 			mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
 			
@@ -275,7 +274,7 @@ public class PinInterface extends Activity {
         private final ProgressDialog dialog = new ProgressDialog(PinInterface.this);
         private JSONObject json;
         private ListView lv = (ListView) findViewById(R.id.list);
-        // can use UI thread here
+
         protected void onPreExecute() {
         	String msg = getString(R.string.processing_);
             this.dialog.setMessage(msg);
@@ -298,7 +297,7 @@ public class PinInterface extends Activity {
 		@Override
 		protected Void doInBackground(String... arg0) {
 
-	    	json = UserFunctions.getInstance().checkPin(idVoucher,editPin.getText().toString());
+	    	json = BeevouFunctions.getInstance().checkPin(idVoucher,editPin.getText().toString());
 	    	    	    
 		return null;
 		}

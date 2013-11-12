@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 import java.util.List;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -109,7 +109,7 @@ OnTaskCompleteListener {
         btnLoadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                // Starting a new async task
+                
             	getVouchers();
             }
         });
@@ -263,7 +263,7 @@ OnTaskCompleteListener {
 
     	public GetScannedVouchers(Resources resources) {
 			super(resources);
-			// TODO Auto-generated constructor stub
+			
 		}
 
 		private JSONObject json;
@@ -276,7 +276,7 @@ OnTaskCompleteListener {
         	lastPage = lastPage +1;
 	    	if (lastPage == 1)
 	    		vouchersList.clear();
-	    	json = UserFunctions.getInstance().getScanedVouchers(orderBy, searchType,lastPage);
+	    	json = BeevouFunctions.getInstance().getScanedVouchers(orderBy, searchType,lastPage);
 	    	    	    
 		return true;
 		}
@@ -434,9 +434,8 @@ OnTaskCompleteListener {
 
     	        		discount_date = name.format(discountDate);
     	        	}
-     	        // creating new HashMap
+     	        
                 HashMap<String, String> map = new HashMap<String, String>();
-                // adding each child node to HashMap key => value
                 map.put("idvoucher", idvoucher);
                 map.put("description", description);
                 map.put("value", value);
@@ -460,7 +459,7 @@ OnTaskCompleteListener {
 
                 vouchersList.add(map);
     	 
-    	    }//for
+    	    }
 		}   
 			}
     	} catch (JSONException e) {

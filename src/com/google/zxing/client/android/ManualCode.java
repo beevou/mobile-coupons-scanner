@@ -1,6 +1,6 @@
 package com.google.zxing.client.android;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -107,7 +107,7 @@ public class ManualCode extends Activity {
 		@Override
 		protected Void doInBackground(String... arg0) {
 	    	//UserFunctions userFunctions = new UserFunctions();
-	    	json = UserFunctions.getInstance().validateQR(codeEdit.getText().toString());
+	    	json = BeevouFunctions.getInstance().validateQR(codeEdit.getText().toString());
 	    	    	    
 		return null;
 		}

@@ -1,6 +1,6 @@
 package com.beevou.android.scanner.scan;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import net.sourceforge.zbar.Symbol;
 
@@ -83,7 +83,7 @@ OnTaskCompleteListener {
 	    	switch (requestCode) {
 	    		case ZBAR_SCANNER_REQUEST:
 	    		{
-	    			//case ZBAR_QR_SCANNER_REQUEST:
+	    			
 	    			if (resultCode == RESULT_OK) {
 	    				qrCode = data.getStringExtra(ZBarConstants.SCAN_RESULT);
 	    				
@@ -109,163 +109,6 @@ OnTaskCompleteListener {
 			
 	    }
 	
-/*	
-    private class DiscountAsyn_Task extends AsyncTask<String, String, Void> {
-        private final ProgressDialog dialog = new ProgressDialog(ScanCamera.this);
-        private JSONObject json;
-
-        // can use UI thread here
-        protected void onPreExecute() {
-            this.dialog.setMessage("Processing...");
-            this.dialog.setCancelable(false);
-            this.dialog.show();
-        }
-        
-        private final OnCompletionListener beepListener = new OnCompletionListener() {
-    		public void onCompletion(MediaPlayer mediaPlayer) {
-    			mediaPlayer.seekTo(0);
-    		}
-    	};
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-        	processResult();
-            if (this.dialog.isShowing()) {
-                this.dialog.dismiss();
-            }
-        }
-        
-
-        
-        
-		@Override
-		protected Void doInBackground(String... arg0) {
-			//toneMessage();
-			//initBeepSound();
-			
-			ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_RING, 200);
-			 tg.startTone(ToneGenerator.TONE_PROP_PROMPT);//.TONE_PROP_BEEP2);//.TONE_SUP_ERROR);//.TONE_PROP_BEEP);
-	    			json = UserFunctions.getInstance().validateQR(qrCode);
-		return null;
-		}
-		
-		
-		private void processResult()
-		{
-			try { 
-		    			// check for login response
-		    				if (json.getString(VALIDATION_CODE) != null) {
-
-		    					Intent scanActivity = new Intent(ScanCamera.this, ScanActivity.class);
-		    					Bundle b = new Bundle();
-		    					b.putInt("validationCode", Integer.parseInt(json.getString(VALIDATION_CODE))); 
-		    					if (json.has("error"))
-		    						b.putString("error", json.getString("error"));
-		    					else
-		    						b.putString("error", "");
-		    					if (json.has("error_msg"))
-		    						b.putString("error_msg", json.getString("error_msg"));
-		    					else
-		    						b.putString("error_msg", "");
-		    					
-		    					//b.putString("qrCode",qrCode);
-		    					if (Integer.parseInt(json.getString(VALIDATION_CODE)) == 1)
-		    					{
-
-		    						JSONObject voucher = json.getJSONObject("voucher");
-		    						String s = voucher.getString("id");
-		    						b.putString("idVoucher", voucher.getString("id"));
-		    						b.putString("emisor", voucher.getString(EMISOR));
-		    						b.putString("caducity", voucher.getString(CADUCITY));
-		    						b.putString("value", voucher.getString(VALUE));
-		    						b.putString("currency", voucher.getString("currency"));
-		    						b.putString("description", voucher.getString(DESCRIPTION));
-		    						b.putString("requirements",voucher.getString("voucher_template_instructions"));
-		    						b.putString("comments",voucher.getString("voucher_template_comments"));
-		    						//TODO b.putString("holder", voucher.getString(HOLDER));
-		    						b.putString("holder", "");
-		    						b.putString("pin", voucher.getString(PIN));
-		    					}
-		    					scanActivity.putExtras(b); //Put your id to your next Intent
-		    					//startActivity(scanActivity);
-		    					startActivityForResult(scanActivity, RESULT_OK);
-		    					finish();
-		    					
-		    					
-		    				}
-		    				
-		    				
-		    				
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-		
-    }
-  */  
-    
- /*   private void decode()
-    {
-    	
-    	ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_RING, 200);
-		 tg.startTone(ToneGenerator.TONE_PROP_PROMPT);
-    	
-    	try { 
-    		
-    		JSONObject json = UserFunctions.getInstance().validateQR(qrCode);
-			// check for login response
-				if (json.getString(VALIDATION_CODE) != null) {
-
-					Intent scanActivity = new Intent(ScanCamera.this, ScanActivity.class);
-					Bundle b = new Bundle();
-					b.putInt("validationCode", Integer.parseInt(json.getString(VALIDATION_CODE))); 
-					if (json.has("error"))
-						b.putString("error", json.getString("error"));
-					else
-						b.putString("error", "");
-					if (json.has("error_msg"))
-						b.putString("error_msg", json.getString("error_msg"));
-					else
-						b.putString("error_msg", "");
-					
-					//b.putString("qrCode",qrCode);
-					if (Integer.parseInt(json.getString(VALIDATION_CODE)) == 1)
-					{
-
-						JSONObject voucher = json.getJSONObject("voucher");
-						String s = voucher.getString("id");
-						b.putString("idVoucher", voucher.getString("id"));
-						b.putString("emisor", voucher.getString(EMISOR));
-						b.putString("caducity", voucher.getString(CADUCITY));
-						b.putString("value", voucher.getString(VALUE));
-						b.putString("currency", voucher.getString("currency"));
-						b.putString("description", voucher.getString(DESCRIPTION));
-						b.putString("requirements",voucher.getString("voucher_template_instructions"));
-						b.putString("comments",voucher.getString("voucher_template_comments"));
-						//TODO b.putString("holder", voucher.getString(HOLDER));
-						b.putString("holder", "");
-						b.putString("pin", voucher.getString(PIN));
-					}
-					scanActivity.putExtras(b); //Put your id to your next Intent
-					//startActivity(scanActivity);
-					startActivityForResult(scanActivity, 10);
-					finish();
-					
-					
-				}
-				
-				
-				
-} catch (JSONException e) {
-	e.printStackTrace();
-}
-    }
-*/
-
-
 	
 	private void initCamera()
 	{
@@ -278,9 +121,6 @@ OnTaskCompleteListener {
 		}
 	}
 
-	
-	
-	
     private boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(ScanCamera.this.CONNECTIVITY_SERVICE);
         if (cm == null)
@@ -316,7 +156,7 @@ OnTaskCompleteListener {
 
 		public processCode(Resources resources) {
 			super(resources);
-			// TODO Auto-generated constructor stub
+			
 		}
 
 		private JSONObject json;
@@ -325,7 +165,7 @@ OnTaskCompleteListener {
         
         @Override
         protected Boolean doInBackground(Void... arg0) {
-        	json = UserFunctions.getInstance().validateQR(qrCode);
+        	json = BeevouFunctions.getInstance().validateQR(qrCode);
 		return true;
 		}
 		
@@ -383,7 +223,7 @@ OnTaskCompleteListener {
 				else
 					b.putString("error_msg", "");
 				
-				//b.putString("qrCode",qrCode);
+				
 				if (Integer.parseInt(json.getString(VALIDATION_CODE)) == 1)
 				{
 
@@ -409,13 +249,13 @@ OnTaskCompleteListener {
 					b.putString("loyalty_points_per_currency_unit", voucher.getString("voucher_template_loyalty_points_per_currency_unit"));
 					b.putString("points", voucher.getString("points"));
 					
-					//TODO b.putString("holder", voucher.getString(HOLDER));
+					
 					b.putString("holder", "");
 					b.putString("pin", voucher.getString(PIN));
 				
 				
 				} 
-				scanActivity.putExtras(b); //Put your id to your next Intent
+				scanActivity.putExtras(b); 
 				startActivityForResult(scanActivity, 10);
 				pendingValidation = false;
 				finish();

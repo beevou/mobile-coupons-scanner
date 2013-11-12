@@ -14,7 +14,7 @@ import com.beevou.android.scanner.taskmanager.AsyncTaskManager;
 import com.beevou.android.scanner.taskmanager.OnTaskCompleteListener;
 import com.beevou.android.scanner.taskmanager.Task;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -95,7 +95,7 @@ OnTaskCompleteListener {
 	public void exitClick(View v)
 	{
 
-    	UserFunctions.getInstance().logoutUser(getApplicationContext());
+    	BeevouFunctions.getInstance().logoutUser(getApplicationContext());
         Intent login = new Intent(getApplicationContext(), Login.class);
         login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(login);
@@ -137,7 +137,7 @@ OnTaskCompleteListener {
     private class getCredits extends Task {
         public getCredits(Resources resources) {
 			super(resources);
-			// TODO Auto-generated constructor stub
+			
 		}
 
         private JSONObject json;
@@ -145,7 +145,7 @@ OnTaskCompleteListener {
         @Override
         protected Boolean doInBackground(Void... arg0) {
         	try {	
-        		json = UserFunctions.getInstance().getUserCredits();
+        		json = BeevouFunctions.getInstance().getUserCredits();
         	} catch (Exception e) {
         		Log.e("background Error getting credits","");
         	}
@@ -165,7 +165,7 @@ OnTaskCompleteListener {
 	public void onTaskComplete(Task task) {
 		if (!task.isCancelled()) {
     		JSONObject json = ((getCredits) mTask).getResult();
-    		//02-14 04:00:38.022: E/JSON(18832): {"total_credits":200,"user_credits":"65"}n
+    		
 			try {
 				if (json.has("AuthError") == true) {
 					if (json.getString("AuthError").equals("invalid_grant"))

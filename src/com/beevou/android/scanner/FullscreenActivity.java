@@ -1,7 +1,7 @@
 package com.beevou.android.scanner;
 
 import com.beevou.android.scanner.R;
-import com.beevou.android.scanner.util.SystemUiHider;
+import com.beevou.android.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

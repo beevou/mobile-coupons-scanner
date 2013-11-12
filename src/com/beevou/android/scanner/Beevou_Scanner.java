@@ -28,38 +28,9 @@ public class Beevou_Scanner extends Application {
 	private String userName;
 	private String userPassword;
 	private String loginMode = "AUTO";
-	static String seed = "ASFGERTGEDTFF–––––––––––„„„„„„„„„„„„„890866&&%%%%%{}[]";
+	static String seed = "MY SEED Password - 5555";
 	private String advancedSecurity = "n";
 
-
-	
-	
-	/*
-	 * 
-	 * 
-	 * (non-Javadoc)
-	 * @see android.app.Application#onCreate()
-	 * ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
-        .memoryCacheExtraOptions(480, 800) // default = device screen dimensions
-        .discCacheExtraOptions(480, 800, CompressFormat.JPEG, 75)
-        .threadPoolSize(3) // default
-        .threadPriority(Thread.NORM_PRIORITY - 1) // default
-        .denyCacheImageMultipleSizesInMemory()
-        .offOutOfMemoryHandling()
-        .memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024)) // default
-        .memoryCacheSize(2 * 1024 * 1024)
-        .discCache(new UnlimitedDiscCache(cacheDir)) // default
-        .discCacheSize(50 * 1024 * 1024)
-        .discCacheFileCount(100)
-        .discCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
-        .imageDownloader(new BaseImageDownloader(context)) // default
-        .tasksProcessingOrder(QueueProcessingType.FIFO) // default
-        .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
-        .enableLogging()
-        .build();
-	 */
-	
-	
 	
 	@Override
     public void onCreate() {
@@ -70,13 +41,11 @@ public class Beevou_Scanner extends Application {
 	public static 	SharedPreferences prefs	= null;
 	public Beevou_Scanner() {
 		super();
-		//Log.e(LOG_TAG, "Singleton created.");
 		m_Instance = this;
-		//	
 	}
-	// Double-checked singleton fetching
+
 	public static Beevou_Scanner getInstance() {
-		// init instance 
+
 		if(m_Instance == null) {
 			synchronized(Beevou_Scanner.class) {
 				if(m_Instance == null) new Beevou_Scanner();

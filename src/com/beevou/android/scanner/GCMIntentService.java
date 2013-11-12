@@ -31,8 +31,8 @@ public class GCMIntentService extends GCMBaseIntentService {
     protected void onRegistered(Context context, String registrationId) {
         Log.i(TAG, "Device registered: regId = " + registrationId);
         displayMessage(context, context.getString(R.string.your_device_registred_with_gcm));
-        //MENE Comentado temporalmente Log.d("NAME", MainActivity.name);
-        //MENE Comentado temporalmente ServerUtilities.register(context, MainActivity.name, MainActivity.email, registrationId);
+        //MENE Temporary Commented Log.d("NAME", MainActivity.name);
+        //MENE Temporary Commented ServerUtilities.register(context, MainActivity.name, MainActivity.email, registrationId);
     }
  
     /**

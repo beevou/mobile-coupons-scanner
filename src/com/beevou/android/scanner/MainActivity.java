@@ -6,7 +6,7 @@ import java.util.Timer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -57,7 +57,6 @@ public class MainActivity extends Activity {
     String SENDER_ID ="1022691900347";
     
     
-    ////UserFunctions userFunctions;
     Button btnLogout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,16 +66,16 @@ public class MainActivity extends Activity {
 
         
         switch (getResources().getDisplayMetrics().densityDpi) {
-        case DisplayMetrics.DENSITY_LOW: //36x36 imagenes icono
+        case DisplayMetrics.DENSITY_LOW: //36x36 
         	Log.v("density", "DENSITY_LOW"); 
             break;
-        case DisplayMetrics.DENSITY_MEDIUM: //48x48 imagenes icono
+        case DisplayMetrics.DENSITY_MEDIUM: //48x48 
         	Log.v("density", "DENSITY_MEDIUM"); 
             break;
-        case DisplayMetrics.DENSITY_HIGH:    //72x72 imagenes icono
+        case DisplayMetrics.DENSITY_HIGH:    //72x72 
         	Log.v("density", "DENSITY_HIGH"); 
             break;
-        case DisplayMetrics.DENSITY_XHIGH:  //96x96 imagenes icono
+        case DisplayMetrics.DENSITY_XHIGH:  //96x96 
         	Log.v("density", "DENSITY_XHIGH"); 
             break;
         }
@@ -107,7 +106,7 @@ public class MainActivity extends Activity {
     	public void run(){
             String android_id = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
             Log.e("android_id", android_id);
-            ////userFunctions = new UserFunctions();
+            
             if (!Beevou_Scanner.getInstance().getUserName().equals("") && Beevou_Scanner.getInstance().getLoginMode().equals("AUTO"))
             {
             	Intent dashboard = new Intent(getApplicationContext(), Dashboard.class);
@@ -197,7 +196,7 @@ public class MainActivity extends Activity {
             * */
 
            // Showing received message
-           //lblMessage.append(newMessage + "\n");
+           
            Toast.makeText(getApplicationContext(), R.string.new_message_ +" "+ newMessage, Toast.LENGTH_LONG).show();
 
            // Releasing wake lock

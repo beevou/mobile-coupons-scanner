@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import java.util.List;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import com.beevou.android.scanner.R;
 import com.beevou.android.scanner.R.id;

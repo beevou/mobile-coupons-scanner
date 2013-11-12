@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 import com.beevou.android.scanner.R;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -79,7 +79,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
   	  acceptButton.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+			
 			ArrayList<String> passing = new ArrayList<String>();
             passing.add(notificationID);
    	
@@ -97,7 +97,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 	    rejectButton.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+			
 			ArrayList<String> passing = new ArrayList<String>();
             passing.add(notificationID);
  	
@@ -112,7 +112,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 	    notificationText.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+				
 				ArrayList<String> passing = new ArrayList<String>();
 	            passing.add(notificationID);
 	 	
@@ -148,7 +148,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 	        private final ProgressDialog dialog = new ProgressDialog(context);
 	        private JSONObject json;
 	        
-	        // can use UI thread here
+	        
 	        protected void onPreExecute() {
 	            this.dialog.setMessage("Accepting...");
 	            this.dialog.setCancelable(false);
@@ -162,7 +162,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 	        	if (this.dialog.isShowing()) {
 	                this.dialog.dismiss();
 	            }
-	        	//setRequestedOrientation(oldOrientation);
+	        	
 	            
 	        }
 	        
@@ -174,7 +174,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 				
 				String notID =  passing[0].get(0);
 
-		    	json = UserFunctions.getInstance().acceptNotification(notID);
+		    	json = BeevouFunctions.getInstance().acceptNotification(notID);
 		    	
 		    	    	    
 			return null;
@@ -193,7 +193,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 	    				buttonsLayout.setVisibility(View.GONE);
 						
 					} else {
-						//ERROR
+						//TODO: ERROR
 					}
 					
 				} catch (JSONException e) {
@@ -211,7 +211,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 	        private final ProgressDialog dialog = new ProgressDialog(context);
 	        private JSONObject json;
 	        
-	        // can use UI thread here
+	        
 	        protected void onPreExecute() {
 	            this.dialog.setMessage("Accepting...");
 	            this.dialog.setCancelable(false);
@@ -237,7 +237,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 				
 				String notID =  passing[0].get(0);
 
-		    	json = UserFunctions.getInstance().rejectNotification(notID);
+		    	json = BeevouFunctions.getInstance().rejectNotification(notID);
 		    	
 		    	    	    
 			return null;
@@ -256,7 +256,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 	    				buttonsLayout.setVisibility(View.GONE);
 						
 					} else {
-						//ERROR
+						//TODO: ERROR
 					}
 					
 				} catch (JSONException e) {
@@ -274,7 +274,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 	        private final ProgressDialog dialog = new ProgressDialog(context);
 	        private JSONObject json;
 	        
-	        // can use UI thread here
+	       
 	        protected void onPreExecute() {
 	            this.dialog.setMessage("Sending...");
 	            this.dialog.setCancelable(false);
@@ -300,7 +300,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 				
 				String notID =  passing[0].get(0);
 
-		    	json = UserFunctions.getInstance().setReadedNotification(notID);
+		    	json = BeevouFunctions.getInstance().setReadedNotification(notID);
 		    	
 		    	    	    
 			return null;
@@ -317,7 +317,7 @@ public class BeevouNotificationsListItemAdapter  extends SimpleAdapter  {
 					{
 						
 					} else {
-						//ERROR
+						//TODO: ERROR
 					}
 					
 				} catch (JSONException e) {

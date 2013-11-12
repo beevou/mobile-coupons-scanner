@@ -32,7 +32,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import libraries.DatabaseHandler;
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
  
 public class Login extends Activity implements 
 OnTaskCompleteListener {
@@ -41,7 +41,7 @@ OnTaskCompleteListener {
     EditText inputPassword;
     TextView loginErrorMsg;
  
-    // JSON Response node names
+
     private static String KEY_SUCCESS = "success";
     private static String KEY_ERROR = "error";
     private static String KEY_ERROR_MSG = "error_msg";
@@ -50,14 +50,13 @@ OnTaskCompleteListener {
     private static String KEY_EMAIL = "email";
     private static String KEY_CREATED_AT = "created";
     private static String USER_NAME = "username";
-    //private UserFunctions userFunction = new UserFunctions();
+
     private String GCM_regID;
     private AsyncTaskManager mAsyncTaskManager;
     private Task mTask;
     private int oldOrientation;
     
     
-    //http://damianflannery.wordpress.com/2011/06/13/integrate-zxing-barcode-scanner-into-your-android-app-natively-using-eclipse/
     static BarcodeFormat BF = BarcodeFormat.CODE_128;
     
 
@@ -79,9 +78,7 @@ OnTaskCompleteListener {
         inputEmail = (EditText) findViewById(R.id.loginEmail);
         inputEmail.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 
-       // DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-       // HashMap<String, String> userValues = db.getUserDetails();
-        //userValues.get("email");   
+  
         inputEmail.setText(Beevou_Scanner.getInstance().getUserName());
 
         
@@ -110,13 +107,7 @@ OnTaskCompleteListener {
     public void goLogin(View v)
     {
     	if (isOnline()) {      
-
-    		
-
-    		
-
-
-    		mAsyncTaskManager = new AsyncTaskManager(this, this, getString(R.string.logging_into_beevou));
+   		    mAsyncTaskManager = new AsyncTaskManager(this, this, getString(R.string.logging_into_beevou));
     		mAsyncTaskManager.handleRetainedTask(getLastNonConfigurationInstance());
     		mTask = new  loginTask(getResources());
     		mAsyncTaskManager.setupTask(mTask);
@@ -142,31 +133,19 @@ OnTaskCompleteListener {
     private void goin(Integer result,String keyName,String keyEmail,String keyUID, String userName )
     {
     	if(result == 1){
-            // user successfully logged in
-             // Store user details in SQLite Database
-            // DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-             //JSONObject json_user = json.getJSONObject("user");
-
-             // Clear all previous data in database
-             //userFunction.logoutUser(getApplicationContext());
+            
     		
-    		UserFunctions.getInstance().logoutUser(getApplicationContext());
+    		BeevouFunctions.getInstance().logoutUser(getApplicationContext());
     		
-    		//SharedPreferences prefs	= this.getSharedPreferences("BVOU1", 0);
-
+    		
     		String user = inputEmail.getText().toString();
     		String password = inputPassword.getText().toString();
     		
-    		/*
-    		 * prefs.edit().putString("001","BEEVOU ANDROID APPLICATION").commit();
-    		prefs.edit().putString("002",email).commit();
-    		prefs.edit().putString("003",password).commit();
-    		*/
+    		
     		
     		Beevou_Scanner.getInstance().setUserName(user);
         	Beevou_Scanner.getInstance().setUserPassword(password);
         	
-            // db.addUser(keyName, keyEmail, keyUID, "2012-01-01",userName); 
              
              
 
@@ -195,7 +174,7 @@ OnTaskCompleteListener {
 						
 					}
 				});
-        	 //alertDialog.setIcon(R.drawable.icon);
+
         	 alertDialog.show();
         	 
              loginErrorMsg.setText(R.string.incorrect_username_password);
@@ -206,7 +185,7 @@ OnTaskCompleteListener {
     private class loginTask extends Task {
         public loginTask(Resources resources) {
 			super(resources);
-			// TODO Auto-generated constructor stub
+
 		}
 
         private JSONObject json;
@@ -219,9 +198,9 @@ OnTaskCompleteListener {
         	try {	
         		String email = inputEmail.getText().toString();
         		String password = inputPassword.getText().toString();
-        		json = UserFunctions.getInstance().loginUser(email, password,GCM_regID);
+        		json = BeevouFunctions.getInstance().loginUser(email, password,GCM_regID);
         	} catch (Exception e) {
-        		//Log.e("background Error loginTask",e.getMessage());
+        		
         		Log.e("background Error loginTask","");
         	}
 	        
@@ -239,17 +218,17 @@ OnTaskCompleteListener {
     public void forgotPass(View v)
     {
     	String url = "https://beevou.net/m/users/remember_password";
-    	Intent i = new Intent(Intent.ACTION_VIEW); // Create a new intent - stating you want to 'view something'
-        i.setData(Uri.parse(url));  // Add the url data (allowing android to realise you want to open the browser)
-        startActivity(i); // Go go go! 
+    	Intent i = new Intent(Intent.ACTION_VIEW); 
+        i.setData(Uri.parse(url));  
+        startActivity(i); 
     }
     
     public void joinBeevou(View v)
     {
     	String url = "https://beevou.net/m/users/signup";
-    	Intent i = new Intent(Intent.ACTION_VIEW); // Create a new intent - stating you want to 'view something'
-        i.setData(Uri.parse(url));  // Add the url data (allowing android to realise you want to open the browser)
-        startActivity(i); // Go go go! 
+    	Intent i = new Intent(Intent.ACTION_VIEW); 
+        i.setData(Uri.parse(url));  
+        startActivity(i); 
     }
 
 

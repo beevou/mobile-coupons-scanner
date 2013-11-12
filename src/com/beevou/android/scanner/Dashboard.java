@@ -3,7 +3,7 @@ package com.beevou.android.scanner;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import com.beevou.android.scanner.R;
 import com.beevou.android.scanner.notifications.BeevouNotifications;
@@ -69,31 +69,6 @@ OnTaskCompleteListener {
     } else {
         Toast.makeText(Dashboard.this, R.string.no_network_connection, Toast.LENGTH_LONG).show();
       }
-     
-        
-        //Se supone que con esto se quita la barra de menu de mi HTC pero habria que implementarlo con reflection 
-        /*
-        final View mainView = findViewById(R.id.scroll);
-        mainView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
-
-        //Register a listener for when the status bar is shown/hidden:
-        final Context context = getApplicationContext();
-        mainView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener () {
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if ((visibility == View.SYSTEM_UI_FLAG_VISIBLE)) {
-                    //Do stuff here...pause the video/game?
-                } else {
-                    //Do other stuff here..resume the video/game?
-                }
-            }
-        });
-        */
-       // setContentView(R.layout.activity_dashboard);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
-        
-       // ((Beevou) this.getApplication()).setAccessToken(value); 
-        
     }
     
     
@@ -124,7 +99,6 @@ OnTaskCompleteListener {
     	public void run(){
             String android_id = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
             Log.e("android_id", android_id);
-            ////userFunctions = new UserFunctions();
             Intent login = new Intent(getApplicationContext(), Login.class);
             login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             Bundle b = new Bundle();
@@ -158,11 +132,7 @@ OnTaskCompleteListener {
     	
     	
         if (isCameraAvailable()) {
-            /*Intent intent = new Intent(this, ZBarScannerActivity.class);
-            intent.putExtra(ZBarConstants.SCAN_MODES, new int[]{Symbol.QRCODE, Symbol.CODE128});
-            startActivityForResult(intent, ZBAR_SCANNER_REQUEST);
-        	*/
-        	//startActivity(new Intent(Dashboard.this, CaptureActivity.class));
+
         	startActivity(new Intent(Dashboard.this, ScanCamera.class));
         	 
         } else {
@@ -172,24 +142,7 @@ OnTaskCompleteListener {
         
     }
     
-    /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	switch (requestCode) {
-    		case ZBAR_SCANNER_REQUEST:
-    			//case ZBAR_QR_SCANNER_REQUEST:
-    			if (resultCode == RESULT_OK) {
-    				//toneMessage();
-    				//this.setRequestedOrientation(defaultOrientation);
-    				qrCode = data.getStringExtra(ZBarConstants.SCAN_RESULT);
-    					new DiscountAsyn_Task().execute("","");
-    				break;
-    			}
-    	}
-    	
-		
-    }
-*/
+
     
     
     
@@ -200,7 +153,7 @@ OnTaskCompleteListener {
     	
         public getNumberNotifications(Resources resources) {
 			super(resources);
-			// TODO Auto-generated constructor stub
+
 		}
 
 
@@ -210,9 +163,8 @@ OnTaskCompleteListener {
         
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-	    	////UserFunctions userFunctions = new UserFunctions();
-	    	//json = userFunctions.getNumberNotifications();
-	    	json = UserFunctions.getInstance().getNumberNotifications();    	    
+
+	    	json = BeevouFunctions.getInstance().getNumberNotifications();    	    
 		return null;
 		}
 		

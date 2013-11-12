@@ -59,12 +59,7 @@ public class ScanActivity extends Activity    {
         
         switch (validationCode) {
         
-        //TODO actualizar el documento
-        /*
-         * 
-         * 
 
-         */
         
         
         case -15: {
@@ -257,13 +252,13 @@ public class ScanActivity extends Activity    {
     	
     	Button moreInfo = (Button) findViewById(R.id.moreInfoButton);
     	
-    	moreInfo.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
+    	moreInfo.setOnClickListener(new View.OnClickListener() {  
             @Override
             public void onClick(View v) {
-            	String url = moreInfoURL; // You could have this at the top of the class as a constant, or pass it in as a method variable, if you wish to send to multiple websites
-                Intent i = new Intent(Intent.ACTION_VIEW); // Create a new intent - stating you want to 'view something'
-                i.setData(Uri.parse(url));  // Add the url data (allowing android to realise you want to open the browser)
-                startActivity(i); // Go go go!                     
+            	String url = moreInfoURL; 
+                Intent i = new Intent(Intent.ACTION_VIEW); 
+                i.setData(Uri.parse(url));  
+                startActivity(i);                    
             }
     	});      
     }
@@ -282,16 +277,16 @@ public class ScanActivity extends Activity    {
     	
     	TextView message1 =  (TextView) findViewById(R.id.message);
     	message1.setText(message);
-    	//message1.setTextColor(Color.parseColor("#B94A8A"));
+    	
     	Button moreInfo = (Button) findViewById(R.id.moreInfoButton);
     	
-    	moreInfo.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
+    	moreInfo.setOnClickListener(new View.OnClickListener() {  
             @Override
             public void onClick(View v) {
-            	String url = moreInfoURL; // You could have this at the top of the class as a constant, or pass it in as a method variable, if you wish to send to multiple websites
-                Intent i = new Intent(Intent.ACTION_VIEW); // Create a new intent - stating you want to 'view something'
-                i.setData(Uri.parse(url));  // Add the url data (allowing android to realise you want to open the browser)
-                startActivity(i); // Go go go!                     
+            	String url = moreInfoURL; 
+                Intent i = new Intent(Intent.ACTION_VIEW); 
+                i.setData(Uri.parse(url));  
+                startActivity(i);                      
             }
     });
     	
@@ -351,7 +346,7 @@ public class ScanActivity extends Activity    {
 		b.putString("pin", pin);
 		identityAlert.putExtras(b); 
 		this.startActivityForResult(identityAlert,1);
-		//finish();
+		
     	
     }
     

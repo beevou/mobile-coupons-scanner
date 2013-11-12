@@ -26,7 +26,6 @@ public class IdentityAlert extends Activity {
 	private String description;
 	private String holder;
 	private Integer validationCode;
-	//private String qrCode;
 	private String idVoucher;
 	private String pin;
 
@@ -50,7 +49,7 @@ final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
 
 
 LinearLayout LY1 = new LinearLayout(this);
-LY1.setBackgroundResource(R.drawable.shape_alert_dot_border);//.shape_silver_no_border);
+LY1.setBackgroundResource(R.drawable.shape_alert_dot_border);
 LinearLayout.LayoutParams params02 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
 params02.setMargins(10, 10, 10, 10);
 LY1.setOrientation(LinearLayout.VERTICAL);
@@ -73,7 +72,6 @@ mainLayout.addView(LY1);
     	TextView  TV2 = new TextView(this);
 		TV2.setText(R.string.please_ask_the_beneficiary_to_identify_himself_herself_with_an_identity_card_or_driving_licence_to_ensure_that_the_holder_of_the_voucher_match_the_voucher_s_beneficiary_name_);
 		TV2.setTextColor(Color.parseColor("#C09853"));
-		//TV2.setPadding(20, 5, 20, 5);
 		LY1.addView(TV2);
     	
     	
@@ -87,10 +85,7 @@ mainLayout.addView(LY1);
         t3.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
             @Override
             public void onClick(View v) {
-            	//mainLayout.removeAllViews();
-            	//scanDiscountInterface();
             	Intent returnIntent = new Intent();
-            	 //returnIntent.putExtra("result",result);
             	 setResult(RESULT_OK,returnIntent);     
             	 finish();
             }
@@ -107,7 +102,6 @@ mainLayout.addView(LY1);
         t4.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
             @Override
             public void onClick(View v) {
-            	//finish();
             	Intent returnIntent = new Intent();
             	setResult(RESULT_CANCELED, returnIntent);        
             	finish();

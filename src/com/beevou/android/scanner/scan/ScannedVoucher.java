@@ -5,7 +5,7 @@ package com.beevou.android.scanner.scan;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 
 import com.beevou.android.scanner.Login;
@@ -247,7 +247,7 @@ OnTaskCompleteListener {
 
 		public BackToHolder(Resources resources) {
 			super(resources);
-			// TODO Auto-generated constructor stub
+			
 		}
 
 		private JSONObject json;
@@ -256,7 +256,7 @@ OnTaskCompleteListener {
         
         @Override
         protected Boolean doInBackground(Void... arg0) {
-        	json = UserFunctions.getInstance().backToHolder(voucherReadID);
+        	json = BeevouFunctions.getInstance().backToHolder(voucherReadID);
 		return true;
 		}
 		
@@ -315,7 +315,7 @@ OnTaskCompleteListener {
 					alertaSimple.show();
 
 				} else {
-					//TODO cambiar por una activity generica para dar el mensaje y aportar mas información así como otros pasos que ayuden al usuario
+					//TODO change this for a generic activity to offer the message and give more info and next steps for the user
 
 					final AlertDialog.Builder alertaSimple = new AlertDialog.Builder(context);
 					alertaSimple.setTitle(R.string.message);

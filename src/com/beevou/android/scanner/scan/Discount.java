@@ -1,7 +1,7 @@
 package com.beevou.android.scanner.scan;
 
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,7 +46,6 @@ OnTaskCompleteListener {
 	private String value;
 	private String currency;
 	private String description;
-	//private String qrCode;
 	private String idVoucher;
 	private String name;
 	private String requirements;
@@ -59,7 +58,7 @@ OnTaskCompleteListener {
 	private int cumulative_value;
 	private int cumulative_target;
 	
-	UserFunctions userFunctions;
+	BeevouFunctions userFunctions;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -221,7 +220,6 @@ OnTaskCompleteListener {
         	{
         		if (cumulative_value +1 == cumulative_target)
         		{
-        			//this is the last one
         			t3.setText("Redeem");
             		t3.setBackgroundResource(R.drawable.green_button);
         			
@@ -235,7 +233,6 @@ OnTaskCompleteListener {
         	{
         		if (cumulative_value +1 == cumulative_target)
         		{
-        			//this is the last one
         			t3.setText("Redeem");
             		t3.setBackgroundResource(R.drawable.green_button);
         			
@@ -321,7 +318,7 @@ OnTaskCompleteListener {
 
 		public discountVoucher(Resources resources) {
 			super(resources);
-			// TODO Auto-generated constructor stub
+			
 		}
 
 		private JSONObject json;
@@ -330,7 +327,7 @@ OnTaskCompleteListener {
         
         @Override
         protected Boolean doInBackground(Void... arg0) {
-        	json = UserFunctions.getInstance().discountQR(idVoucher,pinCode);
+        	json = BeevouFunctions.getInstance().discountQR(idVoucher,pinCode);
 		return true;
 		}
 		

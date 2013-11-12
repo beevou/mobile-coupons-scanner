@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -509,7 +509,7 @@ public final class CaptureActivity extends Activity implements
     try {
     	////UserFunctions userFunctions = new UserFunctions();
 		//JSONObject json = userFunctions.validateQR(beevouCode);
-		JSONObject json = UserFunctions.getInstance().validateQR(beevouCode);
+		JSONObject json = BeevouFunctions.getInstance().validateQR(beevouCode);
 		// check for login response
 		if (json.has("AuthError") == true) {
 				if (json.getString("AuthError").equals("invalid_grant"))
@@ -604,7 +604,7 @@ public final class CaptureActivity extends Activity implements
 		@Override
 		protected Void doInBackground(String... arg0) {
 	    	//UserFunctions userFunctions = new UserFunctions();
-	    	json = UserFunctions.getInstance().validateQR(codeScanned);
+	    	json = BeevouFunctions.getInstance().validateQR(codeScanned);
 	    	    	    
 		return null;
 		}

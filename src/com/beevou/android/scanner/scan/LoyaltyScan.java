@@ -1,6 +1,6 @@
 package com.beevou.android.scanner.scan;
 
-import libraries.UserFunctions;
+import libraries.BeevouFunctions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -245,7 +245,7 @@ OnTaskCompleteListener {
         
         if (loyalty_points_accounting == 0)
         {
-        	//Direct to the addpoints the server will set the ammount to the points balance
+        	//Direct to  addpoints, the server will set the ammount to the points balance
         	
         	process(1,0);
         }
@@ -327,7 +327,6 @@ OnTaskCompleteListener {
 		            processButton.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
 		                @Override
 		                public void onClick(View v) {
-		                	//discount();
 		                	
 		                	process(1,loyalty_points_accounting);
 		                	
@@ -389,14 +388,14 @@ OnTaskCompleteListener {
 			super(resources);
 			loyaltyValue = value;
 			operationType = operation;
-			// TODO Auto-generated constructor stub
+
 		}
 		
 		public processLoyalty(Resources resources, Integer operation) {
 			super(resources);
 			operationType = operation;
 			loyaltyValue = "0";
-			// TODO Auto-generated constructor stub
+
 		}
 
 		private JSONObject json;
@@ -407,9 +406,9 @@ OnTaskCompleteListener {
         protected Boolean doInBackground(Void... arg0) {
         	if (operationType == 1)
         	{
-        		json = UserFunctions.getInstance().addRewards(idVoucher,loyaltyValue);
+        		json = BeevouFunctions.getInstance().addRewards(idVoucher,loyaltyValue);
         	} else {
-        		json = UserFunctions.getInstance().removeRewards(idVoucher,loyaltyValue);
+        		json = BeevouFunctions.getInstance().removeRewards(idVoucher,loyaltyValue);
         	}
 		return true;
 		}
@@ -472,9 +471,9 @@ OnTaskCompleteListener {
     					
     					String theMessage = getResources().getString(R.string.the_rewards_have_been_added_succesfully_actual_balance);
     					alertaSimple.setMessage(String.format(theMessage, acumulatedPoints));
-    					//alertaSimple.setMessage(R.string.the_rewards_have_been_added_succesfully + " " + R.string.actual_balance + " " +acumulatedPoints+ " " +R.string.points);
+    					
     				} else {
-    					//alertaSimple.setMessage(R.string.the_rewards_have_been_removed_succesfully + " " + R.string.actual_balance + " " +acumulatedPoints +" " +R.string.points);
+    					
     					String theMessage = getResources().getString(R.string.the_rewards_have_been_removed_succesfully_actual_balance);
     					alertaSimple.setMessage(String.format(theMessage, acumulatedPoints));
     				}
