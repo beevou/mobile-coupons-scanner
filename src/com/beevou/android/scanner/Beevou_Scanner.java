@@ -28,7 +28,7 @@ public class Beevou_Scanner extends Application {
 	private String userName;
 	private String userPassword;
 	private String loginMode = "AUTO";
-	static String seed = "MY SEED Password - 5555";
+	static String seed = "MY SEED Password";
 	private String advancedSecurity = "n";
 
 	
