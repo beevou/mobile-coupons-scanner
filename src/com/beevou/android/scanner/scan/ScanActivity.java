@@ -42,7 +42,7 @@ public class ScanActivity extends Activity    {
 	private Integer	loyalty_points_per_scan;
 	private Float loyalty_money_amount;
 	private Integer loyalty_points_per_currency_unit;
-	private Integer points;
+	private Float points;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -172,7 +172,7 @@ public class ScanActivity extends Activity    {
 			if (! b.getString("loyalty_points_per_currency_unit").equals("null"))
 				loyalty_points_per_currency_unit = Integer.valueOf(b.getString("loyalty_points_per_currency_unit"));
 			if (! b.getString("points").equals("null"))
-				points = Integer.valueOf(b.getString("points"));
+				points = Float.valueOf(b.getString("points"));
 			
 			
 				if (nominal.equals("y"))
@@ -385,7 +385,7 @@ public class ScanActivity extends Activity    {
 		if (loyalty_points_per_currency_unit != null)
 			b.putInt("loyalty_points_per_currency_unit", loyalty_points_per_currency_unit);
 		if (points != null)
-			b.putInt("points", points);
+			b.putFloat("points", points);
 
 		
 		

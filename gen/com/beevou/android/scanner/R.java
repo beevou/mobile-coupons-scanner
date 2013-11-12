@@ -589,6 +589,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int accept=0x7f0800d9;
         public static final int accepting_the_voucher_transfer=0x7f0800e0;
         public static final int accumulated_loyalty_points_balance=0x7f080167;
+        public static final int actual_balance=0x7f080174;
         public static final int add_reward_points=0x7f080166;
         public static final int address_1=0x7f08009f;
         public static final int address_2=0x7f0800a0;
@@ -811,12 +812,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int please_ask_the_beneficiary_to_identify_himself_herself_with_an_identity_card_or_driving_licence_to_ensure_that_the_holder_of_the_voucher_match_the_voucher_s_beneficiary_name_=0x7f0800f3;
         public static final int please_ask_the_beneficiary_to_introduce_the_identification_pin_for_this_voucher_=0x7f0800f7;
         public static final int please_introduce_here_the_amount_of_points_to_be_added=0x7f08016a;
+        public static final int please_introduce_here_the_amount_of_points_to_be_removed=0x7f080172;
         public static final int please_introduce_here_the_amount_of_the_transaction=0x7f080169;
+        public static final int points=0x7f080175;
         public static final int points_amount=0x7f08016d;
         public static final int post_failed_with_error_code_=0x7f080063;
         public static final int postal_code=0x7f0800a3;
         public static final int process=0x7f08016b;
         public static final int processing_=0x7f0800fb;
+        public static final int processing_loyalty_card_please_wait=0x7f080173;
         public static final int profile=0x7f08013d;
         public static final int profile_action=0x7f080037;
         public static final int progress_title=0x7f08015c;
@@ -870,6 +874,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int the_pin_has_been_removed_successfully_=0x7f0800b7;
         public static final int the_pin_has_been_saved_successfully_=0x7f0800b9;
         public static final int the_pin_must_have_4_digits_at_least=0x7f0800c1;
+        public static final int the_rewards_have_been_added_succesfully=0x7f08016e;
+        public static final int the_rewards_have_been_added_succesfully_actual_balance=0x7f080176;
+        public static final int the_rewards_have_been_removed_succesfully=0x7f080170;
+        public static final int the_rewards_have_been_removed_succesfully_actual_balance=0x7f080177;
         public static final int the_voucher_has_been_back_to_the_holder_succesfully=0x7f080106;
         public static final int the_voucher_has_been_deleted_succesfully=0x7f080082;
         public static final int the_voucher_has_been_deleted_successfully_=0x7f0800bb;
@@ -881,8 +889,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int the_voucher_have_been_unlocked_succesfully=0x7f080088;
         public static final int the_voucher_transfer_has_been_accepted_successfully_=0x7f0800e5;
         public static final int the_voucher_transfer_has_been_rejected_successfully_=0x7f0800e3;
+        public static final int there_has_been_an_error_trying_to_add_the_rewards_to_the_loyalty_card_please_contact_beevou_for_more_information=0x7f08016f;
         public static final int there_has_been_an_error_trying_to_back_the_voucher_to_the_holder_please_contact_beevou_for_more_information=0x7f080107;
         public static final int there_has_been_an_error_trying_to_discount_the_voucher_please_contact_beevou_for_more_information=0x7f0800f1;
+        public static final int there_has_been_an_error_trying_to_remove_the_rewards_to_the_loyalty_card_please_contact_beevou_for_more_information=0x7f080171;
         public static final int there_was_an_error_at_the_server_side_trying_to_accept_the_voucher_transfer_the_voucher_transfer_has_not_been_accepted_please_try_again_and_if_the_problem_persits_in_time_contact_beevou_support=0x7f0800e6;
         public static final int there_was_an_error_at_the_server_side_trying_to_delete_the_voucher_the_voucher_has_not_been_delete_please_try_again_and_if_the_problem_persits_in_time_contact_beevou_support=0x7f0800bc;
         public static final int there_was_an_error_at_the_server_side_trying_to_launch_the_voucher_the_voucher_has_not_been_launch_please_try_again_and_if_the_problem_persits_in_time_contact_beevou_support=0x7f08006d;

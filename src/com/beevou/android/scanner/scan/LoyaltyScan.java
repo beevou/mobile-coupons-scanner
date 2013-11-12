@@ -16,8 +16,10 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
@@ -52,13 +54,16 @@ OnTaskCompleteListener {
 	private Integer	loyalty_points_per_scan;
 	private Float loyalty_money_amount;
 	private Integer loyalty_points_per_currency_unit;
-	private Integer points;
+	private Float points;
 	private LinearLayout LY2;
 	private LinearLayout mainLayout;
 	private static String VALIDATION_CODE = "validationCode";
 	private Task mTask;
 	private AsyncTaskManager mAsyncTaskManager;
 	private String value_to_send;
+	private EditText editPin;
+	private Button processButton;
+	private Integer operationType;
 	
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +87,7 @@ OnTaskCompleteListener {
 			loyalty_points_per_scan = b.getInt("loyalty_points_per_scan");
 			loyalty_money_amount = b.getFloat("loyalty_money_amount");
 			loyalty_points_per_currency_unit = b.getInt("loyalty_points_per_currency_unit");
-			points = b.getInt("points");
+			points = b.getFloat("points");
 			
 			
 			
@@ -108,7 +113,6 @@ OnTaskCompleteListener {
 	        	TextView  TV3 = new TextView(this);
 	        	TV3.setText(getString(R.string.accumulated_loyalty_points_balance) +": "+points);
 	        	TV3.setTextSize(24);
-	        	//TV3.setGravity(Gravity.CENTER_HORIZONTAL);
 	        	TV3.setTextColor(Color.BLACK);
 	        	LY1.addView(TV3);
 	        }
@@ -209,7 +213,7 @@ OnTaskCompleteListener {
 			            t4.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
 			                @Override
 			                public void onClick(View v) {
-			                	//discount();
+			                	removeRewardPoints();
 			                	
 			                }
 			            });
@@ -242,9 +246,11 @@ OnTaskCompleteListener {
         if (loyalty_points_accounting == 0)
         {
         	//Direct to the addpoints the server will set the ammount to the points balance
+        	
+        	process(1,0);
         }
         
-        if (loyalty_points_accounting == 1)
+        if (loyalty_points_accounting == 1 || loyalty_points_accounting == 2)
         {
         	//The user has to insert the money value of the transaction
         	LinearLayout et2 = new LinearLayout(this);
@@ -258,7 +264,12 @@ OnTaskCompleteListener {
 		        	TextView  TV2 = new TextView(this);
 		        	TV2.setPadding(10, 10, 10, 10);
 		        	TV2.setEms(24);
-					TV2.setText(R.string.please_introduce_here_the_amount_of_the_transaction);
+		        	if (loyalty_points_accounting == 1)
+		            {
+		        		TV2.setText(R.string.please_introduce_here_the_amount_of_the_transaction);
+		            } else {
+		            	TV2.setText(R.string.please_introduce_here_the_amount_of_points_to_be_added);	
+		            }
 					TV2.setTextColor(Color.parseColor("#ffffff"));
 					et2.addView(TV2);
 			
@@ -271,13 +282,33 @@ OnTaskCompleteListener {
 	        et1.setLayoutParams(paramset1);
 	        LY3.addView(et1);
 			
-					EditText editPin = new EditText(this);
+					editPin = new EditText(this);
 					editPin.setBackgroundColor(Color.WHITE);
 					editPin.setEms(24);
-					editPin.setInputType(InputType.TYPE_CLASS_NUMBER);
-					editPin.setHint(R.string.transaction_amount);
+					if (loyalty_points_accounting == 1)
+					{
+						editPin.setHint(R.string.transaction_amount);
+						editPin.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+					} else {
+						editPin.setHint(R.string.points_amount);
+						editPin.setInputType(InputType.TYPE_CLASS_NUMBER);
+					}
 					editPin.setTextColor(Color.BLACK);
 					et1.addView(editPin);
+					editPin.addTextChangedListener(new TextWatcher(){
+				        public void afterTextChanged(Editable s) {
+				            if (s.length() > 0)
+				            {
+				            	processButton.setEnabled(true);
+				            	processButton.setBackgroundResource(R.drawable.green_button);
+				            } else {
+				            	processButton.setEnabled(false);
+				            	processButton.setBackgroundResource(R.drawable.grey_button);
+				            }
+				        }
+				        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+				        public void onTextChanged(CharSequence s, int start, int before, int count){}
+				    });
 					
 			LinearLayout et3 = new LinearLayout(this);
 	    	LinearLayout.LayoutParams paramset3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
@@ -286,82 +317,27 @@ OnTaskCompleteListener {
 	        et3.setLayoutParams(paramset3);
 	        LY3.addView(et3);		
 			
-					Button t5 = new Button(this);
-					t5.setPadding(10, 10, 10, 10);
-		            t5.setTextAppearance(this, R.style.ButtonText);
-		        	t5.setText(R.string.process);
-		            t5.setBackgroundResource(R.drawable.green_button);
-		        			
-		            t5.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
+					processButton = new Button(this);
+					processButton.setPadding(10, 10, 10, 10);
+					processButton.setTextAppearance(this, R.style.ButtonText);
+					processButton.setText(R.string.process);
+					processButton.setBackgroundResource(R.drawable.grey_button);
+					processButton.setEnabled(false);
+		            
+		            processButton.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
 		                @Override
 		                public void onClick(View v) {
 		                	//discount();
 		                	
-		                }
-		            });
-		            et3.addView(t5);
-        }
-        
-        
-        if (loyalty_points_accounting == 2)
-        {
-        	//The user has to insert the money value of the transaction
-        	LinearLayout et2 = new LinearLayout(this);
-	    	LinearLayout.LayoutParams paramset2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
-	        paramset2.setMargins(10, 10, 10, 10);
-	        et2.setOrientation(LinearLayout.VERTICAL);
-	        et2.setLayoutParams(paramset2);
-	        LY3.addView(et2);
-        	
-        	
-		        	TextView  TV2 = new TextView(this);
-		        	TV2.setPadding(10, 10, 10, 10);
-		        	TV2.setEms(16);
-					TV2.setText(R.string.please_introduce_here_the_amount_of_points_to_be_added);
-					TV2.setTextColor(Color.parseColor("#FFFFFF"));
-					et2.addView(TV2);
-			
-			
-		
-			LinearLayout et1 = new LinearLayout(this);
-	    	//LY3.setBackground(R.drawable.androidform_13);
-			LinearLayout.LayoutParams paramset1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
-	        paramset1.setMargins(10, 10, 10, 10);
-	        et1.setOrientation(LinearLayout.VERTICAL);
-	        et1.setLayoutParams(paramset1);
-	        LY3.addView(et1);
-			
-					EditText editPin = new EditText(this);
-					editPin.setBackgroundColor(Color.WHITE);
-					editPin.setEms(24);
-					editPin.setInputType(InputType.TYPE_CLASS_NUMBER);
-					editPin.setHint(R.string.points_amount);
-					editPin.setTextColor(Color.BLACK);
-					et1.addView(editPin);
-					
-			LinearLayout et3 = new LinearLayout(this);
-	    	//LY3.setBackground(R.drawable.androidform_13);
-			LinearLayout.LayoutParams paramset3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
-	        paramset3.setMargins(10, 10, 10, 10);
-	        et3.setOrientation(LinearLayout.VERTICAL);
-	        et3.setLayoutParams(paramset3);
-	        LY3.addView(et3);		
-			
-					Button t5 = new Button(this);
-					t5.setPadding(10, 10, 10, 10);
-		            t5.setTextAppearance(this, R.style.ButtonText);
-		        	t5.setText(R.string.process);
-		            t5.setBackgroundResource(R.drawable.green_button);
-		        			
-		            t5.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
-		                @Override
-		                public void onClick(View v) {
-		                	//discount();
+		                	process(1,loyalty_points_accounting);
 		                	
 		                }
 		            });
-		            et3.addView(t5);
+		            et3.addView(processButton);
         }
+        
+        
+        
 	}
 		
 
@@ -377,16 +353,24 @@ OnTaskCompleteListener {
         return ni.isConnectedOrConnecting();
       } 
 	
-	private void process()
-    {
-    	if (isOnline()) {    	
+	private void process(Integer operation,Integer loyaltyScanType)
+    {    
+		if (isOnline()) {
+			operationType = operation;
     		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
     			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     		} else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-    		mAsyncTaskManager = new AsyncTaskManager(this, this, getString(R.string.discounting_voucher_));
+    		mAsyncTaskManager = new AsyncTaskManager(this, this, getString(R.string.processing_loyalty_card_please_wait));
     		mAsyncTaskManager.handleRetainedTask(getLastNonConfigurationInstance());
-    		mTask = new  processVoucher(getResources());
+    		
+    		if (loyaltyScanType == 0)
+    		{
+    			mTask = new  processLoyalty(getResources(),operation); //This is just to the loyalty cards with fixed points in every scan
+    		} else {
+    			mTask = new  processLoyalty(getResources(),editPin.getText().toString(),operation);
+    		}
+    		
     		mAsyncTaskManager.setupTask(mTask);
     	} else {
     		Toast.makeText(LoyaltyScan.this, R.string.no_network_connection, Toast.LENGTH_LONG).show();
@@ -395,12 +379,23 @@ OnTaskCompleteListener {
 	
 	
 	
-	private class processVoucher extends Task {
+	private class processLoyalty extends Task {
 
 
-
-		public processVoucher(Resources resources) {
+		private String loyaltyValue;
+		private Integer operationType;
+		
+		public processLoyalty(Resources resources, String value, Integer operation) {
 			super(resources);
+			loyaltyValue = value;
+			operationType = operation;
+			// TODO Auto-generated constructor stub
+		}
+		
+		public processLoyalty(Resources resources, Integer operation) {
+			super(resources);
+			operationType = operation;
+			loyaltyValue = "0";
 			// TODO Auto-generated constructor stub
 		}
 
@@ -410,7 +405,12 @@ OnTaskCompleteListener {
         
         @Override
         protected Boolean doInBackground(Void... arg0) {
-        	json = UserFunctions.getInstance().addRewards(idVoucher,value_to_send);
+        	if (operationType == 1)
+        	{
+        		json = UserFunctions.getInstance().addRewards(idVoucher,loyaltyValue);
+        	} else {
+        		json = UserFunctions.getInstance().removeRewards(idVoucher,loyaltyValue);
+        	}
 		return true;
 		}
 		
@@ -426,7 +426,7 @@ OnTaskCompleteListener {
 	@Override
 	public void onTaskComplete(Task task) {
 		if (!task.isCancelled()) {
-    		JSONObject json = ((processVoucher) mTask).getResult();
+    		JSONObject json = ((processLoyalty) mTask).getResult();
     		processResult(json);
 		}
 	}
@@ -454,13 +454,30 @@ OnTaskCompleteListener {
 			} else {
 			if (json.getString(VALIDATION_CODE) != null) {
     			
-    			
+    			String acumulatedPoints = "";
     			
     			if (Integer.parseInt(json.getString(VALIDATION_CODE)) == 1)
     			{
     				final AlertDialog.Builder alertaSimple = new AlertDialog.Builder(LoyaltyScan.this);
     				alertaSimple.setTitle(R.string.message);
-    				alertaSimple.setMessage(R.string.the_voucher_has_been_discounted_succesfully);
+    				
+    				if (json.getString("voucherPoints") != null)
+    				{
+    					acumulatedPoints = json.getString("voucherPoints");
+    				}
+    				
+    				
+    				if (operationType == 1)
+    				{
+    					
+    					String theMessage = getResources().getString(R.string.the_rewards_have_been_added_succesfully_actual_balance);
+    					alertaSimple.setMessage(String.format(theMessage, acumulatedPoints));
+    					//alertaSimple.setMessage(R.string.the_rewards_have_been_added_succesfully + " " + R.string.actual_balance + " " +acumulatedPoints+ " " +R.string.points);
+    				} else {
+    					//alertaSimple.setMessage(R.string.the_rewards_have_been_removed_succesfully + " " + R.string.actual_balance + " " +acumulatedPoints +" " +R.string.points);
+    					String theMessage = getResources().getString(R.string.the_rewards_have_been_removed_succesfully_actual_balance);
+    					alertaSimple.setMessage(String.format(theMessage, acumulatedPoints));
+    				}
     				alertaSimple.setPositiveButton("Ok",
     						new DialogInterface.OnClickListener() {
     					public void onClick(DialogInterface dialog, int which) {
@@ -473,7 +490,12 @@ OnTaskCompleteListener {
     				
     				final AlertDialog.Builder alertaSimple = new AlertDialog.Builder(LoyaltyScan.this);
     				alertaSimple.setTitle(R.string.message);
-    				alertaSimple.setMessage(R.string.there_has_been_an_error_trying_to_discount_the_voucher_please_contact_beevou_for_more_information);
+    				if (operationType == 1)
+    				{
+    					alertaSimple.setMessage(R.string.there_has_been_an_error_trying_to_add_the_rewards_to_the_loyalty_card_please_contact_beevou_for_more_information);
+    				} else {
+    					alertaSimple.setMessage(R.string.there_has_been_an_error_trying_to_remove_the_rewards_to_the_loyalty_card_please_contact_beevou_for_more_information);
+    				}
     				alertaSimple.setPositiveButton("Ok",
     						new DialogInterface.OnClickListener() {
     					public void onClick(DialogInterface dialog, int which) {
@@ -494,7 +516,93 @@ OnTaskCompleteListener {
 	
 	
 
-	
+	private void removeRewardPoints()
+	{
+		mainLayout.removeView(LY2);
+		
+		LinearLayout LY3 = new LinearLayout(this);
+    	LY3.setBackgroundResource(R.drawable.corporate_shape);
+		LinearLayout.LayoutParams params01 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
+        params01.setMargins(10, 10, 10, 10);
+        LY3.setOrientation(LinearLayout.VERTICAL);
+        LY3.setLayoutParams(params01);
+        mainLayout.addView(LY3);
+        
+        
+        	//The user has to insert the points value of the transaction
+        	LinearLayout et2 = new LinearLayout(this);
+	    	LinearLayout.LayoutParams paramset2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
+	        paramset2.setMargins(10, 10, 10, 10);
+	        et2.setOrientation(LinearLayout.VERTICAL);
+	        et2.setLayoutParams(paramset2);
+	        LY3.addView(et2);
+        	
+        	
+		        	TextView  TV2 = new TextView(this);
+		        	TV2.setPadding(10, 10, 10, 10);
+		        	TV2.setEms(24);
+		        	TV2.setText(R.string.please_introduce_here_the_amount_of_points_to_be_removed);	
+		            TV2.setTextColor(Color.parseColor("#ffffff"));
+					et2.addView(TV2);
+			
+			
+		
+			LinearLayout et1 = new LinearLayout(this);
+			LinearLayout.LayoutParams paramset1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
+	        paramset1.setMargins(10, 10, 10, 10);
+	        et1.setOrientation(LinearLayout.VERTICAL);
+	        et1.setLayoutParams(paramset1);
+	        LY3.addView(et1);
+			
+					editPin = new EditText(this);
+					editPin.setBackgroundColor(Color.WHITE);
+					editPin.setEms(24);
+					editPin.setHint(R.string.points_amount);
+					editPin.setInputType(InputType.TYPE_CLASS_NUMBER);
+					editPin.setTextColor(Color.BLACK);
+					et1.addView(editPin);
+					editPin.addTextChangedListener(new TextWatcher(){
+				        public void afterTextChanged(Editable s) {
+				            if (s.length() > 0)
+				            {
+				            	processButton.setEnabled(true);
+				            	processButton.setBackgroundResource(R.drawable.green_button);
+				            } else {
+				            	processButton.setEnabled(false);
+				            	processButton.setBackgroundResource(R.drawable.grey_button);
+				            }
+				        }
+				        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+				        public void onTextChanged(CharSequence s, int start, int before, int count){}
+				    });
+					
+			LinearLayout et3 = new LinearLayout(this);
+	    	LinearLayout.LayoutParams paramset3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
+	        paramset3.setMargins(10, 10, 10, 10);
+	        et3.setOrientation(LinearLayout.VERTICAL);
+	        et3.setLayoutParams(paramset3);
+	        LY3.addView(et3);		
+			
+					processButton = new Button(this);
+					processButton.setPadding(10, 10, 10, 10);
+					processButton.setTextAppearance(this, R.style.ButtonText);
+					processButton.setText(R.string.process);
+					processButton.setBackgroundResource(R.drawable.grey_button);
+					processButton.setEnabled(false);
+		            
+		            processButton.setOnClickListener(new View.OnClickListener() {  //Add a listener for when the button is pressed
+		                @Override
+		                public void onClick(View v) {
+		                	process(2,-1);
+		                	
+		                }
+		            });
+		            et3.addView(processButton);
+        
+        
+        
+        
+	}
 	
 
 	

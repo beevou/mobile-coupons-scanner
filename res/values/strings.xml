@@ -383,8 +383,18 @@
     <string name="accumulated_loyalty_points_balance">Actual Balance</string>
     <string name="title_activity_loyalty_scan">Loyalty Card Scan</string>
     <string name="please_introduce_here_the_amount_of_the_transaction">Please introduce here the ammount of the transaction</string>
-    <string name="please_introduce_here_the_amount_of_points_to_be_added">Please, introduce here the ammount of points for the reward</string>
+    <string name="please_introduce_here_the_amount_of_points_to_be_added">Please, introduce here the ammount of points to be added to the loyalty card</string>
     <string name="process">Process</string>
     <string name="transaction_amount">Transaction Amount</string>
     <string name="points_amount">Points Amount</string>
+    <string name="the_rewards_have_been_added_succesfully">The rewards have been added successfully</string>
+    <string name="there_has_been_an_error_trying_to_add_the_rewards_to_the_loyalty_card_please_contact_beevou_for_more_information">There have been an error trying to add the rewards to the loyalty card, please contact support for more information</string>
+	<string name="the_rewards_have_been_removed_succesfully">The rewards have been removed successfully</string>
+    <string name="there_has_been_an_error_trying_to_remove_the_rewards_to_the_loyalty_card_please_contact_beevou_for_more_information">There have been an error trying to remove the rewards to the loyalty card, please contact support for more information</string>
+	<string name="please_introduce_here_the_amount_of_points_to_be_removed">Please, introduce here the ammount of points to be removed from the loyalty card</string>
+	<string name="processing_loyalty_card_please_wait">Processing Loyalty Card, please wait...</string>
+	<string name="actual_balance">Actual Balance</string>
+	<string name="points">points</string>
+	<string name="the_rewards_have_been_added_succesfully_actual_balance">The rewards have been added successfully, actual balance: %s points.</string>
+	<string name="the_rewards_have_been_removed_succesfully_actual_balance">The rewards have been removed successfully, actual balance: %s points.</string>
 </resources>

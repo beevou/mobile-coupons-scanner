@@ -880,8 +880,7 @@ private String getToken()
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("tag", "addReward"));
         params.add(new BasicNameValuePair("voucherID", voucherID));
-        params.add(new BasicNameValuePair("moneyAmount",value));
-        params.add(new BasicNameValuePair("rewardPoints",value));
+        params.add(new BasicNameValuePair("value",value));
         Log.i("voucherID", voucherID);
         Log.i("value for the points", value);
         String theToken = getToken();
