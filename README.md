@@ -24,3 +24,6 @@ http://www.beevou.co.uk/pages/mobile_coupons_developers_info.html
 
 If you need futher help do not hesitate to contact beevou support 
 http://support.beevou.net/
+
+Get here a tutorial for an introduction to mobile coupons
+http://www.beevou.co.uk/docs/Mobile_Coupons.pdf
